@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/galery.css') }}">
+{% endblock %}
+
+
+{% block menu %}
+<div class="menu-content">
+  <div>
+    <form action="http://localhost:5000/search" method="POST">
+      <p>Search photos:</p>
+      Quary:
+      <input type="text" name="search_photos" placeholder="serach"/>
+      Images:
+      <input type="number" name="results_number" value="8" min="1" max="30"/>
+      Resolution:
+      <select name="resolution">
+        {% for resolution in resolutions %}
+        <option>{{resolution}}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Search"/>
+    </form>
+  </div>
+
+  <div>
+    <p>Options:</p>
+    <input type="submit" value="Delete all" onclick="location.href = '/delete-all';"/>
+    <input type="submit" value="Save as collage" onclick="location.href = '/save-as-collage';"/>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block body %}
+  <div class="galery-image-main">
+    {% for uploads_row in uploads_rows %}
+    <div class="galery-image-container">
+      {% for upload in uploads_row %}
+      <div class="galery-image">
+        <img class="galery-image-preview" src="{{url_for('static', filename=upload[0])}}" alt="{{upload[1]}}" onclick="location.href='/edit-set/{{upload[2]}}';">
+        <div class="galery-image-options">
+          <img class="image-option" src="{{url_for('static', filename='app_images/icon_edit.png')}}" alt="edit" onclick="location.href='/edit-set/{{upload[2]}}';">
+          <img class="image-option" src="{{url_for('static', filename='app_images/icon_delete.png')}}" alt="delete" onclick="location.href='/delete/{{upload[2]}}';">
+        </div>
+        <div class="galery-image-move-conrainer">
+          <table>
+            <tr>
+              <td></td>
+              <td><img class="image-option" src="{{url_for('static', filename='app_images/icon_move_up.png')}}" alt="move up" onclick="location.href='/move-galery-image/up/{{upload[2]}}';"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><img class="image-option" src="{{url_for('static', filename='app_images/icon_move_left.png')}}" alt="move left" onclick="location.href='/move-galery-image/left/{{upload[2]}}';"></td>
+              <td></td>
+              <td><img class="image-option" src="{{url_for('static', filename='app_images/icon_move_right.png')}}" alt="move right" onclick="location.href='/move-galery-image/right/{{upload[2]}}';"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><img class="image-option" src="{{url_for('static', filename='app_images/icon_move_down.png')}}" alt="move down" onclick="location.href='/move-galery-image/down/{{upload[2]}}';"></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div class="galery-image-bottom">
+          <div class="galery-image-text-container">
+            <div class="galery-image-text">{{upload[1]}}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

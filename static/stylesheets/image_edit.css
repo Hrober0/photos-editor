@@ -1,0 +1,53 @@
+.back-button {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 15px;
+    top: 15px;
+}
+.back-button:hover {
+    cursor: pointer;
+}
+
+#edit-image-main {
+    margin-top: 150px;
+    width: 100%;
+    display: flex;
+}
+
+#edit-div-image {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-div-options {
+    width: 30%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.edit-option-button {
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 5px;
+    background-color: #2768a5; 
+    border: 4px solid #225b90;
+    color:#dddad6;
+    border-radius: 10px;
+    transition: .2s ease;
+  }
+  .edit-option-button:hover {
+    background-color: #386b9b;
+    cursor: pointer;
+  }
+
+#edit-image-preview {
+    width: 60%;
+    height: auto;
+    border-radius: 10px;
+}

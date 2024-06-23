@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Gallery</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
+
+  {% block head %}{% endblock %}
+  
+</head>
+
+<body>
+
+  <div class="menu">
+    {% block menu %}{% endblock %}
+
+    <progress class="loading-bar" id="main-progress" min="0" max="100" value="100"></progress>
+    <script type="text/javascript">
+      var bar = document.getElementById("main-progress");
+      var barAnimation;
+      setInterval(request, 300);
+      function request() {
+        fetch('/progres')
+        .then(response => response.text())
+        .then(percent => onResult(percent));
+      }
+      function onResult(percent) {
+        percInt = parseInt(percent)
+        if (percInt >= 100) {
+          bar.value = 100;
+          if (barAnimation != null) {
+            clearInterval(barAnimation);
+            barAnimation = null;
+          }
+        }
+        else {
+          currentPerc = parseInt(bar.value);
+          if (percInt > currentPerc || percInt < currentPerc - 20)
+            bar.value = percInt;
+          if (barAnimation == null)
+            barAnimation = setInterval(barAnimator, 100);
+        }
+      }
+      function barAnimator() {
+        bar.value += 0.1;
+      }
+    </script>
+  </div>
+
+  {% block body %}{% endblock %}
+
+</body>
+
+</html>

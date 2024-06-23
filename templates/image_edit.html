@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/image_edit.css') }}">
+{% endblock %}
+
+
+{% block menu %}
+<div class="menu-content">
+    <div>
+        <p>Edit photo: "{{image_name}}"</p>
+        Name:
+        <input type="text" name="name" value="{{image_name}}" id="name-input"/>
+        <input type="submit" value="Save" onclick="location.href='/edit-save/'+document.getElementById('name-input').value;"/>
+    </div>
+  <img class="back-button" src="{{url_for('static', filename='app_images/icon_back.png')}}" alt="back" onclick="location.href='/';">
+</div>
+{% endblock %}
+
+
+{% block body %}
+<div id="edit-image-main">
+    <div id="edit-div-image">
+        <img id="edit-image-preview" src="{{url_for('static', filename=image_path)}}" alt="{{image_name}}">
+    </div>
+    <div id="edit-div-options">
+        <ul>
+            <li><input type="button" value="Turn left" onclick="location.href='/edit-apply/turn-left'" class="edit-option-button"/></li>
+            <li><input type="button" value="Turn right" onclick="location.href='/edit-apply/turn-right'" class="edit-option-button"/></li>
+            <li><input type="button" value="Flip horizontal" onclick="location.href='/edit-apply/flip-horizontal'" class="edit-option-button"/></li>
+            <li><input type="button" value="Flip vertical" onclick="location.href='/edit-apply/flip-vertical'" class="edit-option-button"/></li>
+            <li><input type="button" value="Blur" onclick="location.href='/edit-apply/blur'" class="edit-option-button"/></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
