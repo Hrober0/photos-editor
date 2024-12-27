@@ -1,8 +1,7 @@
 # Photo editor
+A user-friendly application for creating and managing personalized photo galleries through an intuitive visual interface.
 
-
-## Description
-an application that allows you to create your own photo gallery with visual interface
+![image](https://github.com/user-attachments/assets/2a5f578d-cc32-403c-9453-1ee54c3bd48f)
 
 
 ## Utilities
